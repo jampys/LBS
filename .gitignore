@@ -1,4 +1,4 @@
-#ignora el directorio bd
-#bd/
+#ignora el directorio __pycache__
+__pycache__
 #ignora el directorio .idea
 .idea/
