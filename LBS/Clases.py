@@ -18,6 +18,21 @@ class Calculos:
         return ciudades[c]
 
 
+    def formatoSalida(self, p):
+        #print("la longitud es "+str(len(p)))
+        numero=float(p)
+
+        if(int(numero)<10 and int(numero)>=0):
+            p=" "+p
+
+        if(len(p)<=4):
+            p=p+"0"
+
+        return ""+p
 
 
 
+#print(Calculos().formatoSalida("17.25"))
+#print(Calculos().formatoSalida("7.25"))
+#print(Calculos().formatoSalida("-7.25"))
+#print(Calculos().formatoSalida("10.2"))
