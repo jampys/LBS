@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+
 def metodo(ciudad, anio):
 
     matriz= np.zeros((12, 3)) #inicializo la matriz de 12x3 con ceros
@@ -44,24 +45,12 @@ def metodo(ciudad, anio):
 
 def graficar(anio):
     plt.rcParams['figure.figsize'] = 14, 7
-    matriz_variacion=matriz_cr-matriz_co
-    #print(matriz_variacion)
-    #print("-----------------------------")
-    for i in range(12):  #hago todas las diferencias positivas
-        for j in range(3):
-            if (matriz_variacion[i][j]<0):
-                matriz_variacion[i][j]=matriz_variacion[i][j]*-1
-
-    #print(matriz_variacion)
-
-
-    #plt.figure(figsize=(10, 10))
     n_groups=12 #cantidad de grupos
 
-    maximas = matriz_variacion[:,1] #devuelve la columna 1 (temperaturas maximas)
+    media_cr = matriz_cr[:,0] #devuelve la columna 0 (temperaturas medias CR)
     # M[1,:] # fila 1
     #M[:,1] # columna 1
-    minimas = matriz_variacion[:,2] #devuelve la columna 2 (temperaturas minimas)
+    media_co = matriz_co[:,0] #devuelve la columna 0 (temperaturas medias CO)
 
     fig, ax = plt.subplots()
 
@@ -71,26 +60,27 @@ def graficar(anio):
     opacity = 0.4
     error_config = {'ecolor': '0.3'}
 
-    plt.bar(index, maximas, bar_width,
+    plt.bar(index, media_cr, bar_width,
                  alpha=opacity,
                  color='b',
                  error_kw=error_config,
-                 label='Temp Max')
+                 label='CR')
 
-    plt.bar(index + bar_width, minimas, bar_width,
+    plt.bar(index + bar_width, media_co, bar_width,
                  alpha=opacity,
                  color='r',
                  error_kw=error_config,
-                 label='Temp Min')
+                 label='CO')
 
     plt.xlabel('Mes') #etiqueta eje x
-    plt.ylabel('Variación temperatura') #etiqueta eje y
-    plt.title('Variacion de temperaturas por mes C. Rivadavia - Córdoba año 20'+anio) #titulo del grafico
+    plt.ylabel('Temperatura media') #etiqueta eje y
+    plt.title('Temperatura media mensual C. Rivadavia -  Córdoba año 20'+anio) #titulo del grafico
     plt.xticks(index + bar_width, ('Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'))
-    plt.legend()
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
     #plt.tight_layout()
     plt.show()
+
 
 
 
@@ -98,7 +88,7 @@ def ejercicioDos():
         global matriz_cr
         global matriz_co
         KEYWORDS = ["11", "12", "13"]
-        print("Programa que grafica la variacion de temperaturas maximas y minimas por cada mes durante el año ingresado "
+        print("Programa que grafica la temperatura media mensual durante el año ingresado "
               "para las ciudades de Comodoro Rivadavia y Cordoba")
         while True:
             anio_ingresado=input("Ingrese el año 11, 12 o 13. Para salir presione 0 >> ")

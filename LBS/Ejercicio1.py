@@ -46,7 +46,6 @@ def metodo(ciudad, anio):
 
 
 
-
 def ejercicioUno():
         global s
         KEYWORDS = ["11", "12", "13"]
